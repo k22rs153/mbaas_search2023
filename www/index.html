@@ -35,6 +35,19 @@
                 })
 
         }
+
+        function searchPlace() {
+            let place = $("#place").val();
+            let TestDataClass = ncmb.DataStore(db);
+            TestDataClass
+                .equalTo("place",place )
+                .fetchAll()
+                .then(function(results) {
+                    showResults(results);
+                })
+
+        }
+
       function searchLevel() { 
           let level = parseInt($("#level").val()); 
           let TestDataClass = ncmb.DataStore(db); 
@@ -98,8 +111,8 @@
         <label for="name">name:</label>
         <input id="name" type="text" placeholder="character name">
 
-         <label for="name2">place:</label>
-        <input id="name2" type="text" placeholder="Birthplace name">
+         <label for="place">place:</label>
+        <input id="place" type="text" placeholder="Birthplace name">
 
         
     </div>
@@ -111,10 +124,10 @@
 
         <button class="btn" onclick="fetchAll()">Fetch All</button>
         <button class="btn" onclick="searchName()">Name</button>
-        <button class="btn" onclick="searchplace()">place</button><br>
+        <button class="btn" onclick="searchPlace()">place</button><br>
         <button class="btn" onclick="searchLevelLT()">Level&lt;</button>
 
-        <button class="btn" onclick="searchLevel()">Level</button>
+        <button class="btn" onclick="searchPopular()">Popular</button>
 
          <button class="btn" onclick="searchLevelGT()">Level&gt</button>
        
