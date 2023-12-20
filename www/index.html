@@ -46,10 +46,23 @@
             })
         }
 
+          function searchLevelLT(){
+            let level=parseInt($("#level").val());
+            let TestDataClass=ncmb.DataStore(db);
+            TestDataClass
+            .lessThan("level",level)
+            .fetchAll()
+            .then(function(results){
+                showResults(results);
+            })
+        }
+
+         
+
 
         function showResults(results) {
             // テーブルのヘッダを生成
-            let msg = "<table><tr><th>name</th><th>popular</th><th>bounty</th><th>Birthplace</th></tr>";
+            let msg = "<table><tr><th>name</th><th>level</th><th>place</th><th>popular</th></tr>";
             for (let i = 0; i < results.length; i++) {
                 // 各データを収めた表の列を生成
                 msg += "<tr>";
@@ -67,10 +80,11 @@
 </head>
 
 <body>
-    <h1>mBass</h1>
+    <h1>onepiece</h1>
     <div>
         <label for="name">name:</label>
         <input id="name" type="text" placeholder="monster name">
+        
     </div>
     <div>
         <label for="level">level:</label>
@@ -79,11 +93,15 @@
     <div id="button">
 
         <button class="btn" onclick="fetchAll()">Fetch All</button>
-        <button class="btn" onclick="searchName()">Name</button><br>
+        <button class="btn" onclick="searchName()">Name</button>
+        
         <button class="btn" onclick="searchLevelLT()">Level&lt;</button>
         <button class="btn" onclick="searchLevel()">Level</button>
+       
+
     </div>
     <div id="message">message area</div>
 </body>
 
 </html>
+
